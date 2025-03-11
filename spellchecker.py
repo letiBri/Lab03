@@ -8,7 +8,21 @@ class SpellChecker:
         pass
 
     def handleSentence(self, txtIn, language):
-        pass
+        start = time.time()
+        txtIn.lower()
+        txtFin = replaceChars(txtIn)
+        multiDizionario = md.MultiDictionary()
+        multiDizionario.printDic(language)
+        listaReachWords = multiDizionario.searchWordLinear(txtFin, language)
+        myStr = ""
+        print("Using contains")
+        for word in listaReachWords:
+            if word.corretta is False:
+                myStr += f"\n{word}"
+        print(myStr[1::])
+        end = time.time()
+        print(end - start)
+
 
     def printMenu(self):
         print("______________________________\n" +
@@ -23,4 +37,8 @@ class SpellChecker:
 
 
 def replaceChars(text):
-    pass
+    chars = "\\'*_{}[]()>#+-.!$%^;,=_"
+    for c in chars:
+        text = text.replace(c, "")
+    return text
+
