@@ -35,9 +35,29 @@ class MultiDictionary:
             listaReachWords.append(richWord)
         return listaReachWords
 
-    def searchWordDichotomic(self, words, language): #finire
+    def searchWordDichotomic(self, words, language):
         parole = words.split(" ")
         dizTrovato = self.multiDict[language]
+        listaRichWords = []
+        inizio = 0
+        fine = len(dizTrovato)
+        for parola in parole:
+            parolaTrovata = False
+            while inizio <= fine:
+                meta = (inizio + fine) // 2
+                parolaCentrale = dizTrovato[meta]
+                if parolaCentrale == parola:
+                    parolaTrovata = True
+                    break
+                elif parolaCentrale < parola:
+                    inizio = meta + 1
+                else:
+                    fine = meta - 1
+            richWord = rw.RichWord(parola)
+            richWord.corretta = parolaTrovata
+            listaRichWords.append(richWord)
+        return listaRichWords
+
 
 
 

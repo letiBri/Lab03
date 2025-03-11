@@ -13,7 +13,8 @@ class SpellChecker:
         txtFin = replaceChars(txtIn)
         multiDizionario = md.MultiDictionary()
         multiDizionario.printDic(language)
-        listaReachWords = multiDizionario.searchWordLinear(txtFin, language)
+        #listaReachWords = multiDizionario.searchWordLinear(txtFin, language)
+        listaReachWords = multiDizionario.searchWordDichotomic(txtFin, language)
         myStr = ""
         print("Using contains")
         for word in listaReachWords:
